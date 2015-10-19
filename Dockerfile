@@ -97,6 +97,27 @@ RUN echo "R_LIBS=\${R_LIBS-'/usr/local/lib/R/site-library:/usr/local/lib/R/libra
 ## Set default CRAN repo
 RUN echo 'options("repos"="http://cran.rstudio.com")' >> /usr/local/lib/R/etc/Rprofile.site
 
+## to also build littler against RD
+##   1)	 apt-get install git autotools-dev automake
+##   2)	 use CC from RD CMD config CC, ie same as R
+##   3)	 use PATH to include RD's bin, ie
+## ie 
+##   CC="clang-3.5 -fsanitize=undefined -fno-sanitize=float-divide-by-zero,vptr,function -fno-sanitize-recover" \
+##   PATH="/usr/local/lib/R/bin/:$PATH" \
+##   ./bootstrap
+
+## Check out littler
+RUN cd /tmp \
+	&& git clone https://github.com/eddelbuettel/littler.git
+
+RUN cd /tmp/littler \
+	&& CC="gcc -fsanitize=address,undefined" PATH="/usr/local/lib/R/bin/:$PATH" ./bootstrap \
+	&& ./configure --prefix=/usr \
+	&& make \
+	&& make install \
+	&& cp -vax examples/*.r /usr/local/bin 
+
+
 RUN cd /usr/local/bin \
 	&& mv R Rdevel \
 	&& mv Rscript Rscriptdevel \
