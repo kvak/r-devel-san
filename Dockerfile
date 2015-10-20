@@ -14,6 +14,9 @@ RUN apt-get update -qq \
 RUN apt-get update -qq \
 	&& apt-get install -t unstable -y --no-install-recommends \
 		bash-completion \
+		autotools-dev \
+		automake \
+		git \
 		bison \
 		debhelper \
 		default-jdk \
@@ -97,6 +100,7 @@ RUN echo "R_LIBS=\${R_LIBS-'/usr/local/lib/R/site-library:/usr/local/lib/R/libra
 ## Set default CRAN repo
 RUN echo 'options("repos"="http://cran.rstudio.com")' >> /usr/local/lib/R/etc/Rprofile.site
 
+
 ## to also build littler against RD
 ##   1)	 apt-get install git autotools-dev automake
 ##   2)	 use CC from RD CMD config CC, ie same as R
@@ -117,11 +121,9 @@ RUN cd /tmp/littler \
 	&& make install \
 	&& cp -vax examples/*.r /usr/local/bin 
 
-
 RUN cd /usr/local/bin \
 	&& mv R Rdevel \
 	&& mv Rscript Rscriptdevel \
 	&& ln -s Rdevel RD \
 	&& ln -s Rscriptdevel RDscript
-
 
