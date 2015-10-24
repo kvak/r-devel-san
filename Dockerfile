@@ -127,4 +127,4 @@ RUN cd /usr/local/bin \
 	&& ln -s Rdevel RD \
 	&& ln -s Rscriptdevel RDscript
 
-RUN install.r Rcpp RcppEigen robustHD  mvtnorm\
+RUN install.r Rcpp RcppEigen robustHD  mvtnorm \
