@@ -113,7 +113,8 @@ RUN echo 'options("repos"="http://cran.rstudio.com")' >> /usr/local/lib/R/etc/Rp
 ## Check out littler
 RUN cd /tmp \
 	&& wget http://dirk.eddelbuettel.com/code/littler/littler-0.2.3.tar.gz \
-	&& tar -xvzf littler-0.2.3.tar.gz 
+	&& tar -xvzf littler-0.2.3.tar.gz \
+	&& mv littler-0.2.3 littler
 
 RUN cd /tmp/littler \
 	&& CC="gcc -fsanitize=address,undefined" PATH="/usr/local/lib/R/bin/:$PATH" ./bootstrap \
