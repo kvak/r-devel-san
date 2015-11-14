@@ -115,7 +115,7 @@ RUN cd /tmp \
 	&& git clone https://github.com/eddelbuettel/littler.git
 
 RUN cd /tmp/littler \
-	&& CC="gcc -fsanitize=address,undefined" PATH="/usr/local/lib/R/bin/:$PATH" ./bootstrap \
+	&& CC="gcc -fsanitize=address,undefined" PATH="/usr/local/lib/R/bin/:$PATH" ./deprecated/bootstrap \
 	&& ./configure --prefix=/usr \
 	&& make \
 	&& make install \
