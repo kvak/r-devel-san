@@ -114,8 +114,8 @@ RUN echo 'options("repos"="http://cran.rstudio.com")' >> /usr/local/lib/R/etc/Rp
 RUN cd /tmp \
 	&& git clone https://github.com/eddelbuettel/littler.git
 
-RUN cd /tmp/littler \
-	&& CC="gcc -fsanitize=address,undefined" PATH="/usr/local/lib/R/bin/:$PATH" ./deprecated/bootstrap \
+RUN cd /tmp/littler/deprecated \
+	&& CC="gcc -fsanitize=address,undefined" PATH="/usr/local/lib/R/bin/:$PATH" ./bootstrap \
 	&& ./configure --prefix=/usr \
 	&& make \
 	&& make install \
