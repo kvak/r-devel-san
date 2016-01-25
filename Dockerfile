@@ -129,4 +129,4 @@ RUN cd /usr/local/bin \
 	&& ln -s Rdevel RD \
 	&& ln -s Rscriptdevel RDscript
 
-RUN install.r Rcpp RcppEigen robustbase perry ggplot2 robustHD  mvtnorm matrixStats \
+RUN install.r Rcpp RcppEigen robustbase  ggplot2 perry robustHD  mvtnorm matrixStats \
