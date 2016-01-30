@@ -129,4 +129,4 @@ RUN cd /usr/local/bin \
 	&& ln -s Rdevel RD \
 	&& ln -s Rscriptdevel RDscript
 
-RUN install.r Rcpp RcppEigen  matrixStats \
+RUN install.r Rcpp RcppEigen matrixStats \
